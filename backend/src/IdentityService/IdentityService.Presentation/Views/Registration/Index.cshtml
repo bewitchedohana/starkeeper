@@ -1,0 +1,39 @@
+﻿@using IdentityService.Presentation.Controllers
+@using IdentityService.Presentation.ViewModels
+@using IdentityService.Presentation.ViewModels.Abstractions
+@using System.Text.Json
+@using System.ComponentModel
+@model RegistrationViewModel
+
+@{ 
+    List<string>? errors = TempData[nameof(ViewModelBase.Errors)] is not null
+        ? JsonSerializer.Deserialize<List<string>>(TempData[nameof(ViewModelBase.Errors)]!.ToString()!)
+        : null;
+}
+
+<h2>Registration</h2>
+
+<div>
+    @using (Html.BeginForm(actionName: "", controllerName: "Registration", FormMethod.Post))
+    {
+        <label class="form-label" asp-for="email">Email</label>
+        <input class="form-control" type="text" asp-for="email" name="email" />
+
+        <label class="form-label" asp-for="password">Password</label>
+        <input class="form-control" type="password" asp-for="password" name="password" />
+
+        <div class="d-flex justify-content-end my-2">
+            <button class="btn btn-success">Submit</button>
+        </div>
+
+        @if (errors is not null) {
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach (string error in errors) {
+                        <li>@error</li>
+                    }
+                </ul>
+            </div>
+        }
+    }
+</div>
