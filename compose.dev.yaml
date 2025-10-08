@@ -1,0 +1,18 @@
+services:
+  identity-database:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: starkeeper
+    ports:
+      - "5433:5432"
+    volumes:
+      - identity-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+volumes:
+  identity-db-data:
+
+networks:
+  backend-network:
+    driver: bridge
