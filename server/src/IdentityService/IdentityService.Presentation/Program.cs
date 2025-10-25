@@ -18,8 +18,6 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
 }
 
-app.UseHttpsRedirection();
-
 app.UseRouting();
 
 app.UseAuthentication();
