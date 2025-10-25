@@ -12,7 +12,7 @@ services:
       - ASPNETCORE_Kestrel__Endpoints__Http__Url=http://0.0.0.0:80
       - ConnectionStrings__IdentityServiceContext=Host=identity-database;Port=5432;Database=identity_service;Username=postgres;Password=starkeeper
     networks:
-      - backend-network
+      - starkeeper_network
     depends_on:
       - identity-database
     volumes:
@@ -28,11 +28,23 @@ services:
     volumes:
       - identity-db-data:/var/lib/postgresql/data
     networks:
-      - backend-network
+      - starkeeper_network
 
+  bookmarks-web-app:
+    container_name: starkeeper_bookmarks_web_app
+    build:
+      context: ./web/apps/bookmarks
+      target: development
+    ports:
+      - 4000:4200
+    networks:
+      - starkeeper_network
+    volumes:
+      - ./web/apps/bookmarks:/src
+      - /src/node_modules
 volumes:
   identity-db-data:
 
 networks:
-  backend-network:
+  starkeeper_network:
     driver: bridge
