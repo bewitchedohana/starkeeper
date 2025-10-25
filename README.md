@@ -41,13 +41,21 @@ The project consists of several microservices:
 
 This project uses Docker Compose for development environments. The `compose.dev.yaml` file is configured to provide a consistent development experience across different machines.
 
-1. Clone the repository:
+1. Clone the repository with submodules:
 ```bash
-git clone https://github.com/yourusername/starkeeper.git
+git clone --recursive https://github.com/yourusername/starkeeper.git
 cd starkeeper
+git submodule update --init
 ```
 
-2. Start the development environment:
+2. Set up secrets:
+> **Note**: The `secrets` submodule contains development configuration and sensitive data. You need proper access rights to this repository.
+```bash
+# Create symbolic link for Docker Compose
+ln -s secrets/.env ./.env
+```
+
+3. Start the development environment:
 ```bash
 docker compose -f compose.dev.yaml up -d --build
 ```

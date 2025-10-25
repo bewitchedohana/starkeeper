@@ -1,3 +1,5 @@
+name: starkeeper
+
 services:
   identity-service:
     container_name: starkeeper_identity_service
@@ -5,12 +7,12 @@ services:
       context: ./server/src/IdentityService
       target: development
     ports:
-      - "5000:80"
+      - "5000:${IDENTITY_API_PORT}"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://0.0.0.0:80
-      - ASPNETCORE_Kestrel__Endpoints__Http__Url=http://0.0.0.0:80
-      - ConnectionStrings__IdentityServiceContext=Host=identity-database;Port=5432;Database=identity_service;Username=postgres;Password=starkeeper
+      - ASPNETCORE_URLS=${IDENTITY_API_URL}
+      - ASPNETCORE_Kestrel__Endpoints__Http__Url=${IDENTITY_API_URL}
+      - ConnectionStrings__IdentityServiceContext=${IDENTITY_API_CONNECTION_STRING}
     networks:
       - starkeeper_network
     depends_on:
@@ -22,7 +24,7 @@ services:
     container_name: starkeeper_identity_database
     image: postgres:15
     environment:
-      POSTGRES_PASSWORD: starkeeper
+      POSTGRES_PASSWORD: ${IDENTITY_DATABASE_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -36,7 +38,7 @@ services:
       context: ./web/apps/bookmarks
       target: development
     ports:
-      - 4000:4200
+      - 4000:${BOOKMARK_WEB_APP_PORT}
     networks:
       - starkeeper_network
     volumes:
