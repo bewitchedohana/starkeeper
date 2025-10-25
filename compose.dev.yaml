@@ -1,10 +1,30 @@
 services:
+  identity-service:
+    container_name: starkeeper_identity_service
+    build:
+      context: ./server/src/IdentityService
+      target: development
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ASPNETCORE_Kestrel__Endpoints__Http__Url=http://0.0.0.0:80
+      - ConnectionStrings__IdentityServiceContext=Host=identity-database;Port=5432;Database=identity_service;Username=postgres;Password=starkeeper
+    networks:
+      - backend-network
+    depends_on:
+      - identity-database
+    volumes:
+      - ./server/src/IdentityService:/src
+
   identity-database:
+    container_name: starkeeper_identity_database
     image: postgres:15
     environment:
       POSTGRES_PASSWORD: starkeeper
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - identity-db-data:/var/lib/postgresql/data
     networks:
