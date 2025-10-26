@@ -5,14 +5,8 @@ using IdentityService.Persistence.Contexts;
 using IdentityService.Persistence.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Rebus.Config;
-using Rebus.Config.Outbox;
-using Rebus.PostgreSql;
-using Rebus.Routing.TypeBased;
-using Shared.Events.Integration;
 
 namespace IdentityService.Infrastructure.Injection;
 
@@ -35,20 +29,20 @@ public static class InfrastructureInjector
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie();
 
-        services.AddRebus(configure => configure
-                .Routing(r => r.TypeBased()
-                    .Map<UserRegistrationStartedEvent>(rebusOptions.UserCreatedQueue))
-                .Sagas(t => t.StoreInPostgres(
-                    connectionString: connectionString,
-                    "sagas",
-                    "saga_index"
-                ))
-                .Options(options =>
-                {
-                    options.SetNumberOfWorkers(1);
-                    options.SetMaxParallelism(1);
-                })
-        );
+        // services.AddRebus(configure => configure
+        //         .Routing(r => r.TypeBased()
+        //             .Map<UserRegistrationStartedEvent>(rebusOptions.UserCreatedQueue))
+        //         .Sagas(t => t.StoreInPostgres(
+        //             connectionString: connectionString,
+        //             "sagas",
+        //             "saga_index"
+        //         ))
+        //         .Options(options =>
+        //         {
+        //             options.SetNumberOfWorkers(1);
+        //             options.SetMaxParallelism(1);
+        //         })
+        // );
 
         services.AddOpenIddict()
             .AddCore(options =>
