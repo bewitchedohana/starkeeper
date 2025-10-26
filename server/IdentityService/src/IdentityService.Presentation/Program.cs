@@ -1,6 +1,7 @@
 using IdentityService.Infrastructure.Injection;
 using IdentityService.Persistence.Injection;
 using IdentityService.Application.Injection;
+using IdentityService.Presentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,5 +28,7 @@ app.MapStaticAssets();
 app.MapDefaultControllerRoute();
 app.MapRazorPages()
    .WithStaticAssets();
+
+app.MigrateDatabase();
 
 app.Run();
