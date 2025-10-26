@@ -4,7 +4,7 @@ services:
   identity-service:
     container_name: starkeeper_identity_service
     build:
-      context: ./server/src/IdentityService
+      context: ./server/IdentityService
       target: development
     ports:
       - "5000:${IDENTITY_API_PORT}"
@@ -18,7 +18,7 @@ services:
     depends_on:
       - identity-database
     volumes:
-      - ./server/src/IdentityService:/src
+      - ./server/IdentityService:/app
 
   identity-database:
     container_name: starkeeper_identity_database

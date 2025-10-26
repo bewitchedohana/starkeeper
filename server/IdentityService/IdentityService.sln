@@ -9,19 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D983A5A8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityService", "IdentityService", "{2BA546F8-7A19-C7EB-498A-6088BFE12260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Presentation", "src\IdentityService\IdentityService.Presentation\IdentityService.Presentation.csproj", "{DD1B4E48-3D55-47B1-B605-E255FC979916}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Presentation", "src\IdentityService.Presentation\IdentityService.Presentation.csproj", "{DD1B4E48-3D55-47B1-B605-E255FC979916}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Persistence", "src\IdentityService\IdentityService.Persistence\IdentityService.Persistence.csproj", "{D88ACCAD-B25F-4E58-B622-E63738E05415}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Persistence", "src\IdentityService.Persistence\IdentityService.Persistence.csproj", "{D88ACCAD-B25F-4E58-B622-E63738E05415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Domain", "src\IdentityService\IdentityService.Domain\IdentityService.Domain.csproj", "{B8AED7AD-628C-4B45-913D-6C98C06B2A74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Domain", "src\IdentityService.Domain\IdentityService.Domain.csproj", "{B8AED7AD-628C-4B45-913D-6C98C06B2A74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Infrastructure", "src\IdentityService\IdentityService.Infrastructure\IdentityService.Infrastructure.csproj", "{FFA91F89-3308-465A-B026-3DE127B1ACCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Infrastructure", "src\IdentityService.Infrastructure\IdentityService.Infrastructure.csproj", "{FFA91F89-3308-465A-B026-3DE127B1ACCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Application", "src\IdentityService\IdentityService.Application\IdentityService.Application.csproj", "{40332DEF-1E64-4337-8D93-76784E643C0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Application", "src\IdentityService.Application\IdentityService.Application.csproj", "{40332DEF-1E64-4337-8D93-76784E643C0D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServiceTests", "IdentityServiceTests", "{C9FD7ED1-020C-401B-8E87-6D5EE542EFDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Application.Tests", "tests\IdentityServiceTests\IdentityService.Application.Tests\IdentityService.Application.Tests.csproj", "{3C110D21-119F-40B5-A796-C666914EC1BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Application.Tests", "tests\IdentityService.Application.Tests\IdentityService.Application.Tests.csproj", "{3C110D21-119F-40B5-A796-C666914EC1BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
