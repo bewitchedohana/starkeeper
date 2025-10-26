@@ -4,7 +4,8 @@ services:
   identity-service:
     container_name: starkeeper_identity_service
     build:
-      context: ./server/IdentityService
+      context: ./server
+      dockerfile: Services/IdentityService/Dockerfile
       target: development
     ports:
       - "5000:${IDENTITY_API_PORT}"
@@ -13,12 +14,14 @@ services:
       - ASPNETCORE_URLS=${IDENTITY_API_URL}
       - ASPNETCORE_Kestrel__Endpoints__Http__Url=${IDENTITY_API_URL}
       - ConnectionStrings__IdentityServiceContext=${IDENTITY_API_CONNECTION_STRING}
+      - Rebus__RabbitMqConnectionString=${IDENTITY_API_REBUS_RABBITMQ_CONNECTION_STRING}
+      - Rebus__UserCreatedQueue=${IDENTITY_API_REBUS_RABBITMQ_USER_CREATE_QUEUE}
     networks:
       - starkeeper_network
     depends_on:
       - identity-database
     volumes:
-      - ./server/IdentityService:/app
+      - ./server/Services/IdentityService:/app/Services/IdentityService
 
   identity-database:
     container_name: starkeeper_identity_database
@@ -44,6 +47,18 @@ services:
     volumes:
       - ./web/apps/bookmarks:/src
       - /src/node_modules
+
+  rabbit-mq:
+    image: rabbitmq:3-management
+    container_name: starkeeper_rabbitmq
+    hostname: starkeeper_rabbitmq
+    ports:
+      - 5672:${RABBITMQ_PORT}
+      - 15672:${RABBITMQ_MANAGEMENT_PORT}
+    environment:
+      - RABBITMQ_DEFAULT_USER:${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS:${RABBITMQ_PASSWORD}
+
 volumes:
   identity-db-data:
 
