@@ -1,2 +1,10 @@
 <Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/shared/">
+    <Project Path="src/shared/Starkeeper.Common.Cryptography/Starkeeper.Common.Cryptography.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/shared/">
+    <Project Path="tests/shared/Starkeeper.Common.Cryptography.UnitTests/Starkeeper.Common.Cryptography.UnitTests.csproj" />
+  </Folder>
 </Solution>
