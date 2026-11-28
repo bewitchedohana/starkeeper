@@ -1,8 +1,8 @@
 using Bogus;
 using Shouldly;
-using Starkeeper.Common.Cryptography.Deriver;
+using Starkeeper.Common.Cryptography.Derivers;
 
-namespace Starkeeper.Common.Cryptography.UnitTests;
+namespace Starkeeper.Common.Cryptography.UnitTests.Derivers;
 
 public sealed class MasterKeyDeriverTests
 {
@@ -20,7 +20,7 @@ public sealed class MasterKeyDeriverTests
         byte[] secondMasterKey = await masterKeyDeriver.DeriveMasterKey(password, email);
 
         // Assert
-        firstMasterKey.Length.ShouldBe(32);
+        firstMasterKey.Length.ShouldBe(MasterKeyDeriver.MasterKeyLength);
         firstMasterKey.ShouldBe(secondMasterKey);
     }
 
@@ -88,6 +88,20 @@ public sealed class MasterKeyDeriverTests
 
         // Act
         Func<Task> act = () => masterKeyDeriver.DeriveMasterKey(null!, email);
+
+        // Assert
+        await act.ShouldThrowAsync<ArgumentNullException>();
+    }
+
+    [Fact]
+    public async Task DeriveMasterKey_WithNullEmailSalt_ThrowsArgumentNullException()
+    {
+        // Arrange
+        MasterKeyDeriver masterKeyDeriver = new();
+        const string password = "Senha@123";
+
+        // Act
+        Func<Task> act = () => masterKeyDeriver.DeriveMasterKey(password, null!);
 
         // Assert
         await act.ShouldThrowAsync<ArgumentNullException>();
